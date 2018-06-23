@@ -1,21 +1,38 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+
+import {connect} from 'react-redux';
+
+import SearchInput from './components/searchInput';
+import ContactList from './components/contactList';
+import PersonDetails from './components/personDetails';
 
 class App extends Component {
   render() {
+    console.log(this.props)
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <div className='App-container'>
+          <div className='App-search-section'>
+          <SearchInput/>
+          <ContactList/>
+          </div>
+          <div className='App-output'>
+          <PersonDetails/>
+          </div>
+        </div>
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = state=>({
+  clients: [],
+  chosenClient: {}
+})
+const mapActionsToProps = {
+  
+}
+
+
+export default connect(mapStateToProps, mapActionsToProps)(App);
