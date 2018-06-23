@@ -10,31 +10,24 @@ import {connect} from 'react-redux';
 class ContactList extends Component {
     constructor(props) {
         super(props)
-        this.state = {
-            loaded: false
-        }
+
         this.chosenClientByUser = this.chosenClientByUser.bind(this)
     }
 
-    componentWillMount() {
+    componentDidMount() {
         getClients()
     }
-
-    
 
     chosenClientByUser = (event)=>{
         let item = event.target.parentNode;
         if(!item.hasAttribute('number')) return
         let itemId = item.getAttribute('number')
         let chosen = this.props.clients.find(el=> {return el.id == itemId})
-
-        console.log(chosen)
         this.props.chosenClientByUser(chosen)
     }
 
     render() {
         const { clients } = this.props;
-        console.log(clients)
         const listItems = clients.map((el, i)=>{
             return <List.Item className='listItem' key={i} number = {el.id}>
                     <Image avatar floated='left' src={el.general.avatar} size='mini'/>
@@ -52,10 +45,10 @@ class ContactList extends Component {
 }
 const mapStateToProps = state=>({
     clients: state.clients,
-  })
-  const mapActionsToProps = {
+  });
+const mapActionsToProps = {
     chosenClientByUser: chosenClient
-  }
+}
 
 
 export default connect(mapStateToProps, mapActionsToProps)(ContactList);

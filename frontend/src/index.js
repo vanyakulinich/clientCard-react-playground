@@ -20,7 +20,7 @@ export const store = createStore(
     allReducers, 
     {
         clients: [],
-        chosen: {}
+        chosen: null
 
     },
     window.devToolsExtension && window.devToolsExtension()
