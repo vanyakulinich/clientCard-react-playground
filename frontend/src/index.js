@@ -19,7 +19,8 @@ export const store = createStore(
     allReducers, 
     {
         clients: [],
-    }
+    },
+    window.devToolsExtension && window.devToolsExtension()
 );
 
 ReactDOM.render( 

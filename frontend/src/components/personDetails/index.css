@@ -1,11 +1,6 @@
-.App {
-    width: 90vw;
-    height: 90vh;
-    display: flex;
-}
-
-.App-contact {
-    width: 40%;
+.person {
+    margin: 0;
+    width: 60%;
     height: 100%;
     display: flex;
     flex-direction: column;
