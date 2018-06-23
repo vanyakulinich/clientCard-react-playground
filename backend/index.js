@@ -1,14 +1,12 @@
-const express = require('express')
+const express = require('express');
 const app = express();
-const cors = require('cors')
-const clients = require('./clients.json')
+const cors = require('cors');
+const clients = require('./clients.json');
 
 app.use(cors());
 
-app.get('/clients', function(req, res) {
-    // console.log(clients)
+app.get('/', function(req, res) {
     res.send(clients)
 })
-
 
 app.listen(3001, console.log('listen'))

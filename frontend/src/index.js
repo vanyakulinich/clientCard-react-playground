@@ -9,20 +9,17 @@ import registerServiceWorker from './registerServiceWorker';
 import { combineReducers, createStore } from 'redux';
 import {Provider} from 'react-redux';
 import clientsReducer from './reducers/clientsReducer';
-import chosenClientReducer from './reducers/chosenClientReducer';
 
 
 const allReducers = combineReducers({
     clients: clientsReducer,
-    chosenClient: chosenClientReducer
 })
 
-const store = createStore(allReducers, 
+export const store = createStore(
+    allReducers, 
     {
-        clients: '[1, 2, 3]',
-        chosenClient: {}
-    },
-    window.devToolsExtension && window.devToolsExtension() 
+        clients: [],
+    }
 );
 
 ReactDOM.render( 

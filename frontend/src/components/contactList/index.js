@@ -2,28 +2,33 @@ import React, { Component } from 'react'
 import { List } from 'semantic-ui-react'
 import getClients from '../../request'
 
+
+import {connect} from 'react-redux';
+
 class ContactList extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            persons: []
-        }
-    }
+    // constructor(props) {
+    //     super(props)
+    //     this.state = {
+    //         persons: []
+    //     }
+    // }
 
     componentWillMount() {
-        this.setState({
-            persons: getClients()
-        })
-        console.log(this.state.persons)
-
+        getClients()
     }
 
     render() {
-        const { persons } = this.state
-        // console.log(persons)
-        return ( < List /> )
+        const { clients } = this.props
+        console.log(clients)
+        return ( < List items = {clients.map((el)=> el.address.city)}/> )
     }
 }
+const mapStateToProps = state=>({
+    clients: state.clients,
+  })
+//   const mapActionsToProps = {
+//     findClient: searchClient
+//   }
 
 
-export default ContactList
+export default connect(mapStateToProps)(ContactList);
