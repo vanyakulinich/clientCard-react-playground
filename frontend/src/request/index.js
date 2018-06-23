@@ -9,9 +9,9 @@ export default async function getClients() {
         })
         .then(data => {
             store.dispatch({
-                    type: SEARCH_CLIENT,
-                    clients: data
-                })
-                // return data
+                type: SEARCH_CLIENT,
+                clients: data
+            })
         })
+        .catch(error => console.log(error));
 }

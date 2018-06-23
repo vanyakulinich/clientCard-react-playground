@@ -14,6 +14,7 @@
 }
 
 .App-search-section {
+    overflow-y: scroll;
     display: flex;
     flex-direction: column;
     width: 40%;
