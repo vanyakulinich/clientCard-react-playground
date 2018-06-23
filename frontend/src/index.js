@@ -9,16 +9,19 @@ import registerServiceWorker from './registerServiceWorker';
 import { combineReducers, createStore } from 'redux';
 import {Provider} from 'react-redux';
 import clientsReducer from './reducers/clientsReducer';
-
+import chosenClientReducer from './reducers/chosenClientReducer';
 
 const allReducers = combineReducers({
     clients: clientsReducer,
+    chosen: chosenClientReducer
 })
 
 export const store = createStore(
     allReducers, 
     {
         clients: [],
+        chosen: {}
+
     },
     window.devToolsExtension && window.devToolsExtension()
 );

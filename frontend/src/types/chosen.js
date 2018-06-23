@@ -1,0 +1,3 @@
+const CHOSEN_CLIENT = 'CHOSEN_CLIENT'
+
+export default CHOSEN_CLIENT

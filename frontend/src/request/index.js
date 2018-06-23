@@ -10,7 +10,9 @@ export default async function getClients() {
         .then(data => {
             store.dispatch({
                 type: SEARCH_CLIENT,
-                clients: data
+                clients: data.map((el, i) => {
+                    return ({...el, id: i })
+                })
             })
         })
         .catch(error => console.log(error));

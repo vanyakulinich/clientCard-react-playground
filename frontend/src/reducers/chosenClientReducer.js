@@ -1,9 +1,10 @@
-export default function chosenClientreducer(state = {}, { type, update }) {
+import CHOSEN_CLIENT from '../types/chosen';
+
+export default function chosenClientReducer(state = {}, { type, chosen }) {
     switch (type) {
-        case 'newChosenClient':
-            return update;
+        case CHOSEN_CLIENT:
+            return chosen;
         default:
             return state;
     }
-
 }
