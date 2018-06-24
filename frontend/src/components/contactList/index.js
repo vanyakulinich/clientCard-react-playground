@@ -39,6 +39,7 @@ class ContactList extends Component {
     }
 
     render() {
+        console.log('render list')
         const {value, clients} = this.props
         const display = (value) ? this.searchMod(value, clients) : listItems(clients)
         return ( 

@@ -17,6 +17,7 @@ class SearchInput extends Component {
 
 
     render() {
+        console.log('render input')
         return ( <Input placeholder = 'Search...'
             onClick = { this.clickedInput }
             onChange = { this.userSearch }/>
