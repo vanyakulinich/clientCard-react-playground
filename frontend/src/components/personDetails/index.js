@@ -35,7 +35,6 @@ class PersonDetails extends Component {
   }
 
   render(){
-    console.log('render personSetails')
     const client = this.selectedClient()
     return (
       <div className='wrapper'>

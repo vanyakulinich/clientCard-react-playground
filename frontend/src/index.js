@@ -23,7 +23,7 @@ export const store = createStore(
     {
         clients: [],
         chosen: null,
-        value: ''
+        value: '',
 
     },
     window.devToolsExtension && window.devToolsExtension()

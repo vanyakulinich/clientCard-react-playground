@@ -7,7 +7,6 @@ import { Segment, Header } from 'semantic-ui-react';
 
 class App extends Component {
   render() {
-    console.log('render app')
     return (
       <div className="App" >
           <Segment className="App-contact">

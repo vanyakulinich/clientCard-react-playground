@@ -10,9 +10,8 @@ import {connect} from 'react-redux';
 class ContactList extends Component {
    
     componentDidMount() {
-        getClients()
+        getClients() 
     }
-
 
     chosenClientByUser = (event)=>{
         let item = event.target.parentNode;
@@ -23,10 +22,9 @@ class ContactList extends Component {
     }
 
     searchMod = (value, clients)=>{
-
         const result = clients.filter(el=>{
             for(let key in el) {
-                if(key == 'avatar' || key == 'id') continue
+                if(key === 'avatar' || key === 'id') continue
                 if(el[key].toLowerCase().indexOf(value)>=0) {
                     el.foundName =key
                     el.foundValue = el[key]
@@ -39,7 +37,6 @@ class ContactList extends Component {
     }
 
     render() {
-        console.log('render list')
         const {value, clients} = this.props
         const display = (value) ? this.searchMod(value, clients) : listItems(clients)
         return ( 
@@ -61,14 +58,13 @@ function listItems(array, search) {
     
     return array.map((el, i)=>{
         return <List.Item className='listItem' key={i} number = {el.id}>
-        {(search) ? 
-        <Header as='h5' 
-        color='blue'>Found {el.foundName} : {el.foundValue}</Header> : null}
-
-                <Image avatar floated='left' src={el.avatar} size='mini'/>
-                <Header as='h3'>{el.firstName} {el.lastName}</Header>
-                <Header color='grey' as='h5'>{el.title}</Header>
-              </List.Item> 
+                    {(search) ? 
+                    <Header as='h5' 
+                    color='blue'>Found {el.foundName} : {el.foundValue}</Header> : null}
+                    <Image avatar floated='left' src={el.avatar} size='mini'/>
+                    <Header as='h3'>{el.firstName} {el.lastName}</Header>
+                    <Header color='grey' as='h5'>{el.title}</Header>
+                </List.Item> 
     })
 }
 
