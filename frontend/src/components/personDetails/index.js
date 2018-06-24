@@ -13,13 +13,13 @@ class PersonDetails extends Component {
             <Header as='h1'>{general.firstName} {general.lastName}</Header>
             <Header color='grey' as ='h2'>{job.title}</Header>
             <Header color='grey' as ='h3'>{job.company} Company</Header>
-            <Container>
+            <Container className='contacts'>
               <Icon name='phone' size='large'/>{contact.phone}
             </Container>
-            <Container>
+            <Container className='contacts'>
               <Icon name='mail' size='large'/>{contact.email}
             </Container>
-            <Container>
+            <Container className='contacts'>
               <Icon name='address card' size='large' className='address'/>
               <List items = {[
                 address.street+' street', 

@@ -1,0 +1,2 @@
+const SEARCH_VALUE = 'SEARCH_VALUE';
+export default SEARCH_VALUE;

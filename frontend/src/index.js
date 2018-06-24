@@ -10,17 +10,20 @@ import { combineReducers, createStore } from 'redux';
 import {Provider} from 'react-redux';
 import clientsReducer from './reducers/clientsReducer';
 import chosenClientReducer from './reducers/chosenClientReducer';
+import searchReducer from './reducers/searchReducer';
 
 const allReducers = combineReducers({
     clients: clientsReducer,
-    chosen: chosenClientReducer
+    chosen: chosenClientReducer,
+    value: searchReducer
 })
 
 export const store = createStore(
     allReducers, 
     {
         clients: [],
-        chosen: null
+        chosen: null,
+        value: ''
 
     },
     window.devToolsExtension && window.devToolsExtension()

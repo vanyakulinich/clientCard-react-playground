@@ -1,36 +1,38 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import { Input } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import chosenClient from '../../actions/chosenClient'
+import search from '../../actions/search'
 
 class SearchInput extends Component {
 
-    clickedInput=()=>{
-        const{chosen} = this.props;
+    clickedInput = () => {
+        const { chosen } = this.props;
         (chosen) && this.props.clickedInput(null)
     }
 
-    search =()=>{
-
+    userSearch = (e) => {
+        this.props.userSearch(e.target.value)
     }
 
 
     render() {
-        return(
-            < Input
-                placeholder = 'Search...' 
-                onClick = {this.clickedInput}
-                onChange = {this.search}/>
+        return ( <Input placeholder = 'Search...'
+            onClick = { this.clickedInput }
+            onChange = { this.userSearch }/>
         )
     }
 }
 
-const mapStateToProps=state=>({
-    chosen: state.chosen
+const mapStateToProps = state => ({
+    chosen: state.chosen,
+    value: state.value
 })
 
 const mapActionsToProps = {
-    clickedInput: chosenClient
+    clickedInput: chosenClient,
+    userSearch: search
+
 }
 
 export default connect(mapStateToProps, mapActionsToProps)(SearchInput);

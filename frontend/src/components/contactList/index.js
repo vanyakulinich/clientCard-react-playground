@@ -8,25 +8,35 @@ import chosenClient from '../../actions/chosenClient'
 import {connect} from 'react-redux';
 
 class ContactList extends Component {
-    constructor(props) {
-        super(props)
-
-        this.chosenClientByUser = this.chosenClientByUser.bind(this)
-    }
-
+   
     componentDidMount() {
         getClients()
     }
 
+    // shouldComponentUpdate(nextProps){
+    //     return nextProps.clients.length !== this.props.clients.length
+    // }
+
     chosenClientByUser = (event)=>{
         let item = event.target.parentNode;
         if(!item.hasAttribute('number')) return
-        let itemId = item.getAttribute('number')
-        let chosen = this.props.clients.find(el=> {return el.id == itemId})
+        let itemId = +item.getAttribute('number')
+        let chosen = this.props.clients.find(el=> {return el.id === itemId})
         this.props.chosenClientByUser(chosen)
     }
 
-    render() {
+    searchMod = ()=>{
+        const {value, clients} = this.props;
+        if(!value) return false
+        const result = clients.map((el)=>{
+            return Object.entries(el)
+        })
+
+        console.log(result)
+        return value
+    }
+
+    showClients=()=>{
         const { clients } = this.props;
         const listItems = clients.map((el, i)=>{
             return <List.Item className='listItem' key={i} number = {el.id}>
@@ -35,16 +45,21 @@ class ContactList extends Component {
                     <Header color='grey' as='h5'>{el.job.title}</Header>
                   </List.Item> 
         })
+        return listItems
+    }
 
+    render() {
+        const display = this.searchMod() || this.showClients()
         return ( 
-        < List divided items = {listItems } 
-        className='list'
-        onClick = {this.chosenClientByUser}/> 
-    )
+            < List divided items = {display } 
+            className='list'
+            onClick = {this.chosenClientByUser}/> 
+        )
     }
 }
 const mapStateToProps = state=>({
     clients: state.clients,
+    value: state.value
   });
 const mapActionsToProps = {
     chosenClientByUser: chosenClient
