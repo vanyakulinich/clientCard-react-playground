@@ -6,16 +6,35 @@
 
 .person {
     height: 100%;
-    /* width: 80%; */
     overflow: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.person * {
-    height: auto;
+.person .info .address {
+    display: flex;
+    align-items: baseline;
+}
+
+.person .avatar {
     width: fit-content;
-    margin: 0;
+    margin: 0 20px;
 }
 
-.person .address {
-    float: left;
+.person .info {
+    width: 60%;
+}
+
+@media (max-width: 1000px) {
+    .person {
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+    .person .avatar {
+        margin-bottom: 20px;
+    }
+    .person .info {
+        width: 100%;
+    }
 }
