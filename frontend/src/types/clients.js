@@ -1,0 +1,3 @@
+const CLIENTS_LIST = 'CLIENTS_LIST'
+
+export default CLIENTS_LIST

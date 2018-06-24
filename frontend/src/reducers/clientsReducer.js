@@ -1,10 +1,9 @@
-import { SEARCH_CLIENT } from '../actions/clientSearch';
+import CLIENTS_LIST from '../types/clients';
 
-
-export default function clientsReducer(state = '[]', { type, clients }) {
+export default function clientsReducer(state = [], { type, clients }) {
     switch (type) {
-        case SEARCH_CLIENT:
-            return clients
+        case CLIENTS_LIST:
+            return clients;
         default:
             return state;
     }
