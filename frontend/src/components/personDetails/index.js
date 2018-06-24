@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { Segment, Image, Header, Container } from 'semantic-ui-react'
+import { Segment, Image, Header, Container, Icon, List } from 'semantic-ui-react'
 import './index.css'
 import {connect} from 'react-redux';
 
@@ -8,22 +8,35 @@ class PersonDetails extends Component {
   selectedClient = ()=>{
     if (!this.props.chosen) return false;
     const {general, job, contact, address} = this.props.chosen
-    return <div>
-            <Image src={general.avatar} size='small' circular/>
-            <Header as='h2'>{general.firstName} {general.lastName}</Header>
-           </div>
-      
-            
-    
-    
+    return <Segment className="person">
+            <Image src={general.avatar} size='medium' circular floated='right'/>
+            <Header as='h1'>{general.firstName} {general.lastName}</Header>
+            <Header color='grey' as ='h2'>{job.title}</Header>
+            <Header color='grey' as ='h3'>{job.company} Company</Header>
+            <Container>
+              <Icon name='phone' size='large'/>{contact.phone}
+            </Container>
+            <Container>
+              <Icon name='mail' size='large'/>{contact.email}
+            </Container>
+            <Container>
+              <Icon name='address card' size='large' className='address'/>
+              <List items = {[
+                address.street+' street', 
+                address.city + ' city', 
+                address.country,
+                'Zip Code: '+address.zipCode]}/>
+            </Container>
+          </Segment>
   }
 
   render(){
+    console.log(this.props)
     const client = this.selectedClient()
     return (
-      <Segment className="person">
+      <div className='wrapper'>
         {client}
-      </Segment>
+      </div>
     )
   }
 }

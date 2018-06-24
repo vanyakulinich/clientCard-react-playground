@@ -31,7 +31,7 @@ class ContactList extends Component {
         const listItems = clients.map((el, i)=>{
             return <List.Item className='listItem' key={i} number = {el.id}>
                     <Image avatar floated='left' src={el.general.avatar} size='mini'/>
-                    <Header as='h3'>{el.general.firstName}{el.general.lastName}</Header>
+                    <Header as='h3'>{el.general.firstName} {el.general.lastName}</Header>
                     <Header color='grey' as='h5'>{el.job.title}</Header>
                   </List.Item> 
         })
