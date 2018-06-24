@@ -7,25 +7,25 @@ class PersonDetails extends Component {
 
   selectedClient = ()=>{
     if (!this.props.chosen) return false;
-    const {general, job, contact, address} = this.props.chosen
+    const {chosen} = this.props
     return <Segment className="person">
-            <Image src={general.avatar} size='medium' circular floated='right'/>
-            <Header as='h1'>{general.firstName} {general.lastName}</Header>
-            <Header color='grey' as ='h2'>{job.title}</Header>
-            <Header color='grey' as ='h3'>{job.company} Company</Header>
+            <Image src={chosen.avatar} size='medium' circular floated='right'/>
+            <Header as='h1'>{chosen.firstName} {chosen.lastName}</Header>
+            <Header color='grey' as ='h2'>{chosen.title}</Header>
+            <Header color='grey' as ='h3'>{chosen.company} Company</Header>
             <Container className='contacts'>
-              <Icon name='phone' size='large'/>{contact.phone}
+              <Icon name='phone' size='large'/>{chosen.phone}
             </Container>
             <Container className='contacts'>
-              <Icon name='mail' size='large'/>{contact.email}
+              <Icon name='mail' size='large'/>{chosen.email}
             </Container>
             <Container className='contacts'>
               <Icon name='address card' size='large' className='address'/>
               <List items = {[
-                address.street+' street', 
-                address.city + ' city', 
-                address.country,
-                'Zip Code: '+address.zipCode]}/>
+                chosen.street+' street', 
+                chosen.city + ' city', 
+                chosen.country,
+                'Zip Code: '+chosen.zipCode]}/>
             </Container>
           </Segment>
   }

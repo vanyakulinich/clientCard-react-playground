@@ -12,7 +12,7 @@ class SearchInput extends Component {
     }
 
     userSearch = (e) => {
-        this.props.userSearch(e.target.value)
+        this.props.userSearch(e.target.value.toLowerCase())
     }
 
 
@@ -32,7 +32,6 @@ const mapStateToProps = state => ({
 const mapActionsToProps = {
     clickedInput: chosenClient,
     userSearch: search
-
 }
 
 export default connect(mapStateToProps, mapActionsToProps)(SearchInput);

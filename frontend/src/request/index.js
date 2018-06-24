@@ -11,7 +11,13 @@ export default function getClients() {
             store.dispatch({
                 type: CLIENTS_LIST,
                 clients: data.map((el, i) => {
-                    return ({...el, id: i })
+                    return Object.assign({}, 
+                            el.general, 
+                            el.job,
+                            el.contact,
+                            el.address,
+                            {id: i}
+                    )
                 })
             })
         })

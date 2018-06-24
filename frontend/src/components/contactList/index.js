@@ -13,9 +13,6 @@ class ContactList extends Component {
         getClients()
     }
 
-    // shouldComponentUpdate(nextProps){
-    //     return nextProps.clients.length !== this.props.clients.length
-    // }
 
     chosenClientByUser = (event)=>{
         let item = event.target.parentNode;
@@ -25,31 +22,25 @@ class ContactList extends Component {
         this.props.chosenClientByUser(chosen)
     }
 
-    searchMod = ()=>{
-        const {value, clients} = this.props;
-        if(!value) return false
-        const result = clients.map((el)=>{
-            return Object.entries(el)
-        })
+    searchMod = (value, clients)=>{
 
-        console.log(result)
-        return value
-    }
-
-    showClients=()=>{
-        const { clients } = this.props;
-        const listItems = clients.map((el, i)=>{
-            return <List.Item className='listItem' key={i} number = {el.id}>
-                    <Image avatar floated='left' src={el.general.avatar} size='mini'/>
-                    <Header as='h3'>{el.general.firstName} {el.general.lastName}</Header>
-                    <Header color='grey' as='h5'>{el.job.title}</Header>
-                  </List.Item> 
+        const result = clients.filter(el=>{
+            for(let key in el) {
+                if(key == 'avatar' || key == 'id') continue
+                if(el[key].toLowerCase().indexOf(value)>=0) {
+                    el.foundName =key
+                    el.foundValue = el[key]
+                    return true
+                }
+            }
+            return result
         })
-        return listItems
+        return listItems(result, true)
     }
 
     render() {
-        const display = this.searchMod() || this.showClients()
+        const {value, clients} = this.props
+        const display = (value) ? this.searchMod(value, clients) : listItems(clients)
         return ( 
             < List divided items = {display } 
             className='list'
@@ -65,5 +56,19 @@ const mapActionsToProps = {
     chosenClientByUser: chosenClient
 }
 
+function listItems(array, search) {
+    
+    return array.map((el, i)=>{
+        return <List.Item className='listItem' key={i} number = {el.id}>
+        {(search) ? 
+        <Header as='h5' 
+        color='blue'>Found {el.foundName} : {el.foundValue}</Header> : null}
+
+                <Image avatar floated='left' src={el.avatar} size='mini'/>
+                <Header as='h3'>{el.firstName} {el.lastName}</Header>
+                <Header color='grey' as='h5'>{el.title}</Header>
+              </List.Item> 
+    })
+}
 
 export default connect(mapStateToProps, mapActionsToProps)(ContactList);
