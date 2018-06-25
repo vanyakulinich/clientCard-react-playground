@@ -1,31 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-// semantic ui
 import 'semantic-ui-css/semantic.min.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
-import { combineReducers, createStore } from 'redux';
+import { createStore } from 'redux';
 import {Provider} from 'react-redux';
-import clientsReducer from './reducers/clientsReducer';
-import chosenClientReducer from './reducers/chosenClientReducer';
-import searchReducer from './reducers/searchReducer';
-
-const allReducers = combineReducers({
-    clients: clientsReducer,
-    chosen: chosenClientReducer,
-    value: searchReducer
-})
+import allReducers from './reducers/allReducers';
 
 export const store = createStore(
     allReducers, 
-    {
-        clients: [],
-        chosen: null,
-        value: '',
-
-    },
     window.devToolsExtension && window.devToolsExtension()
 );
 

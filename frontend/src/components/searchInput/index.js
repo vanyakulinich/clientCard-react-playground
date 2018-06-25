@@ -15,11 +15,11 @@ class SearchInput extends Component {
         this.props.userSearch(e.target.value.toLowerCase())
     }
 
-
     render() {
-        return ( <Input placeholder = 'Search...'
-            onClick = { this.clickedInput }
-            onChange = { this.userSearch }/>
+        return ( < Input placeholder = 'Search...'
+            onClick = { this.clickedInput } // input click clears the client info field
+            onChange = { this.userSearch }
+            />
         )
     }
 }

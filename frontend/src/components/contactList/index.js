@@ -4,7 +4,6 @@ import './index.css'
 import getClients from '../../request'
 import chosenClient from '../../actions/chosenClient'
 
-
 import {connect} from 'react-redux';
 
 class ContactList extends Component {
@@ -21,7 +20,7 @@ class ContactList extends Component {
         this.props.chosenClientByUser(chosen)
     }
 
-    searchMod = (value, clients)=>{
+    searchMod = (value, clients, cb)=>{
         const result = clients.filter(el=>{
             for(let key in el) {
                 if(key === 'avatar' || key === 'id') continue
@@ -33,13 +32,12 @@ class ContactList extends Component {
             }
             return result
         })
-        return listItems(result, true)
+        return cb(result, true)
     }
 
     render() {
-        console.log('render list')
         const {value, clients} = this.props
-        const display = (value) ? this.searchMod(value, clients) : listItems(clients)
+        const display = (value) ? this.searchMod(value, clients, listItems) : listItems(clients)
         return ( 
             < List divided items = {display } 
             className='list'
@@ -47,16 +45,8 @@ class ContactList extends Component {
         )
     }
 }
-const mapStateToProps = state=>({
-    clients: state.clients,
-    value: state.value
-  });
-const mapActionsToProps = {
-    chosenClientByUser: chosenClient
-}
 
 function listItems(array, search) {
-    
     return array.map((el, i)=>{
         return <List.Item className='listItem' key={i} number = {el.id}>
                     {(search) ? 
@@ -67,6 +57,14 @@ function listItems(array, search) {
                     <Header color='grey' as='h5'>{el.title}</Header>
                 </List.Item> 
     })
+}
+
+const mapStateToProps = state=>({
+    clients: state.clients,
+    value: state.value
+  });
+const mapActionsToProps = {
+    chosenClientByUser: chosenClient
 }
 
 export default connect(mapStateToProps, mapActionsToProps)(ContactList);
