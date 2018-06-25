@@ -7,8 +7,7 @@ import search from '../../actions/search'
 class SearchInput extends Component {
 
     clickedInput = () => {
-        const { chosen } = this.props;
-        (chosen) && this.props.clickedInput(null)
+        (this.props.chosen) && this.props.clickedInput(null)
     }
 
     userSearch = (e) => {

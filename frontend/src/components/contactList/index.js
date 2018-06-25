@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import { List, Image, Header } from 'semantic-ui-react'
 import './index.css'
-import getClients from '../../request'
 import chosenClient from '../../actions/chosenClient'
-
-import {connect} from 'react-redux';
+import getClients from '../../actions/clients'
+import {connect} from 'react-redux'
 
 class ContactList extends Component {
    
