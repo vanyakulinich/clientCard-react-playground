@@ -8,7 +8,7 @@ import {connect} from 'react-redux'
 class ContactList extends Component {
    
     componentDidMount() {
-        getClients() 
+        this.props.getClients()
     }
 
     chosenClientByUser = (event)=>{
@@ -63,7 +63,8 @@ const mapStateToProps = state=>({
     value: state.value
   });
 const mapActionsToProps = {
-    chosenClientByUser: chosenClient
+    chosenClientByUser: chosenClient,
+    getClients: getClients
 }
 
 export default connect(mapStateToProps, mapActionsToProps)(ContactList);
